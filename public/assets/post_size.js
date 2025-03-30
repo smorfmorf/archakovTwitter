@@ -1,12 +1,14 @@
 function postSize(post) {
-    // Регулярное для поиска ссылок
-    const urlPattern = /https?:\/\/[^\s]+/g;
+    const words = post.split(' ');
 
-    const textWithoutLinks = post.replace(urlPattern, '');
-    return textWithoutLinks.length;
+    const wordsWithoutLinks = words.filter(word => {
+        if (word.startsWith('http://') || word.startsWith('https://')) {
+            return false;
+        }
+        return true;
+    });
+
+    return wordsWithoutLinks.join(' ').length;
 }
 
 export default postSize;
-
-
-//
